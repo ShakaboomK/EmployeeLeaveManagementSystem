@@ -1,4 +1,5 @@
 package com.stsk.EmployeeLeaveManagementSystem.utils;
 
-public class UserRole {
+public enum UserRole {
+    ADMIN, MANAGER, EMPLOYEE, USER;
 }
