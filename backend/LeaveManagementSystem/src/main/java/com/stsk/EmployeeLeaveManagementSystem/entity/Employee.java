@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "employees")
 @Getter@Setter@NoArgsConstructor@AllArgsConstructor
@@ -24,5 +26,11 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "manager_id")
     private Employee manager;
+
+    @OneToMany(mappedBy = "manager")
+    private List<Employee> teamMembers;
+
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    private List<LeaveRequest> leaveRequests;
 
 }
