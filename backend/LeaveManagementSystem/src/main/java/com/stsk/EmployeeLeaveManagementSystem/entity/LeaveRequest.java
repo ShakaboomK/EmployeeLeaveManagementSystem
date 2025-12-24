@@ -1,5 +1,7 @@
 package com.stsk.EmployeeLeaveManagementSystem.entity;
 
+import com.stsk.EmployeeLeaveManagementSystem.utils.HalfDaySessionType;
+import com.stsk.EmployeeLeaveManagementSystem.utils.LeaveDurationType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,7 +30,16 @@ public class LeaveRequest {
     private LocalDate startDate;
     private LocalDate endDate;
 
-    private int totalDays;
+    @Column(nullable = false)
+    private double totalDays;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private LeaveDurationType  leaveDurationType;
+
+    @Column(name = "half_day_session")
+    @Enumerated(EnumType.STRING)
+    private HalfDaySessionType halfDaySessionType;
 
     @Column(length = 500)
     private String reason;
