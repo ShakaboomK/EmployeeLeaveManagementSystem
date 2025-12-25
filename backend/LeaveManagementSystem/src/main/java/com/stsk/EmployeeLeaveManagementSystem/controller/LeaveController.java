@@ -9,18 +9,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.persistence.Table;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/stsk/elms")
+@RequestMapping("/stsk/elms/leave")
 @AllArgsConstructor
 @Tag(name = "Leave API's",description = "Employee leave Operations")
 public class LeaveController {
@@ -36,6 +32,18 @@ public class LeaveController {
     )
     @PostMapping("/apply")
     public ResponseEntity<LeaveApplyResponse> applyLeave(@Valid @RequestBody LeaveApplyRequest request) {
+        return null;
+    }
+
+    @Operation(summary = "Cancel Applied leave", description = "Cancel applied leave using Leave ID")
+    @ApiResponses(
+            {
+                    @ApiResponse(responseCode = "200",description = "leave canceled"),
+                    @ApiResponse(responseCode = "400", description = "Invalid Leave Id")
+            }
+    )
+    @PutMapping("/cancel")
+    public ResponseEntity<?> cancelAppliedLeave(@PathVariable Long id){
         return null;
     }
 }
