@@ -30,7 +30,7 @@ public class Employee {
     @OneToMany(mappedBy = "manager")
     private List<Employee> teamMembers;
 
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "employee")
     private List<LeaveRequest> leaveRequests;
 
 }

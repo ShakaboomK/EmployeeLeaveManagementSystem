@@ -35,15 +35,15 @@ public class LeaveController {
         return null;
     }
 
-    @Operation(summary = "Cancel Applied leave", description = "Cancel applied leave using Leave ID")
+    @Operation(summary = "Cancel Applied leave", description = "Cancel applied leave using LeaveRequest ID")
     @ApiResponses(
             {
                     @ApiResponse(responseCode = "200",description = "leave canceled"),
                     @ApiResponse(responseCode = "400", description = "Invalid Leave Id")
             }
     )
-    @PutMapping("/cancel")
-    public ResponseEntity<?> cancelAppliedLeave(@PathVariable Long id){
+    @PutMapping("/cancel/{leaveId}")
+    public ResponseEntity<?> cancelAppliedLeave(@PathVariable Long leaveId){
         return null;
     }
 }
