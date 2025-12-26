@@ -1,7 +1,6 @@
 package com.stsk.EmployeeLeaveManagementSystem.entity;
 
-import com.stsk.EmployeeLeaveManagementSystem.utils.HalfDaySessionType;
-import com.stsk.EmployeeLeaveManagementSystem.utils.LeaveDurationType;
+import com.stsk.EmployeeLeaveManagementSystem.utils.LeaveStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,6 +8,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "leave_requests")
@@ -33,19 +33,15 @@ public class LeaveRequest {
     @Column(nullable = false)
     private double totalDays;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private LeaveDurationType  leaveDurationType;
-
-    @Column(name = "half_day_session")
-    @Enumerated(EnumType.STRING)
-    private HalfDaySessionType halfDaySessionType;
+    @OneToMany(mappedBy = "leaveRequest", cascade = CascadeType.PERSIST)
+    private List<LeaveDay> leaveDays;
 
     @Column(length = 500)
     private String reason;
 
     @Column(nullable = false)
-    private String status; // PENDING, APPROVED, REJECTED
+    @Enumerated(EnumType.STRING)
+    private LeaveStatus status; // PENDING, APPROVED, REJECTED
 
     private String managerComment;
 

@@ -1,17 +1,19 @@
 package com.stsk.EmployeeLeaveManagementSystem.dto;
 
-import com.stsk.EmployeeLeaveManagementSystem.utils.HalfDaySessionType;
-import com.stsk.EmployeeLeaveManagementSystem.utils.LeaveDurationType;
+import com.stsk.EmployeeLeaveManagementSystem.entity.LeaveDay;
+import com.stsk.EmployeeLeaveManagementSystem.utils.LeaveDayType;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Schema(description = "Request body for applying leave")
-public class LeaveApplyRequest {
+public class LeaveApplyRequestDto {
 
     @Schema(example ="1", description = "Employee ID")
     @NotNull(message = "employeeId can not be empty or null or negative")
@@ -29,11 +31,15 @@ public class LeaveApplyRequest {
     @Schema(example = "2025-12-10")
     private LocalDate endDate;
 
-    @Schema(example = "HALF_DAY")
-    private LeaveDurationType leaveDurationType;
+    @Schema(example = "HALF_DAY_FORENOON")
+    private LeaveDayType leaveDurationType;
 
-    @Schema(example = "MORNING", description = "if halfday is selected then and only this field is required")
-    private HalfDaySessionType  halfDaySessionType;
+    @ArraySchema(
+            schema = @Schema(implementation = LeaveDayTypeDto.class),
+            arraySchema = @Schema(
+                    description = "Per-day leave breakdown (source of truth)")
+    )
+    private List<LeaveDayTypeDto> leaveDays;
 
     @NotBlank(message = "Leave Reason cannot be empty or null")
     @Schema(example = "Personal Reasons MF!")

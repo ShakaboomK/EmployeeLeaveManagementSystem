@@ -1,8 +1,8 @@
 package com.stsk.EmployeeLeaveManagementSystem.controller;
 
 import com.stsk.EmployeeLeaveManagementSystem.dto.ErrorResponse;
-import com.stsk.EmployeeLeaveManagementSystem.dto.LeaveApplyRequest;
-import com.stsk.EmployeeLeaveManagementSystem.dto.LeaveApplyResponse;
+import com.stsk.EmployeeLeaveManagementSystem.dto.LeaveApplyRequestDto;
+import com.stsk.EmployeeLeaveManagementSystem.dto.LeaveApplyResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -25,13 +25,13 @@ public class LeaveController {
     @ApiResponses(
             {
                     @ApiResponse(responseCode = "200", description = "Leave applied",
-                    content = @Content(schema = @Schema(implementation = LeaveApplyResponse.class))),
+                    content = @Content(schema = @Schema(implementation = LeaveApplyResponseDto.class))),
                     @ApiResponse(responseCode = "400",description = "Validation Error",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
             }
     )
     @PostMapping("/apply")
-    public ResponseEntity<LeaveApplyResponse> applyLeave(@Valid @RequestBody LeaveApplyRequest request) {
+    public ResponseEntity<LeaveApplyResponseDto> applyLeave(@Valid @RequestBody LeaveApplyRequestDto request) {
         return null;
     }
 

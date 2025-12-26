@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Schema(description = "Leave application response, subject to change")
-public class LeaveApplyResponse {
+public class LeaveApplyResponseDto {
     @Schema(example = "1")
     private Long leaveId;
 
