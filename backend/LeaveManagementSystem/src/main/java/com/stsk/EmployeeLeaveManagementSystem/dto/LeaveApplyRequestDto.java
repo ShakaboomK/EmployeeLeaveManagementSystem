@@ -31,8 +31,6 @@ public class LeaveApplyRequestDto {
     @Schema(example = "2025-12-10")
     private LocalDate endDate;
 
-    @Schema(example = "HALF_DAY_FORENOON")
-    private LeaveDayType leaveDurationType;
 
     @ArraySchema(
             schema = @Schema(implementation = LeaveDayTypeDto.class),
