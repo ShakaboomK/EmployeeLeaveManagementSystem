@@ -15,6 +15,9 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    public Employee(Long id) { this.id = id; } // <-- add this
+    
     private String department;
 
     private String designation;

@@ -13,6 +13,9 @@ public class LeaveType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    public LeaveType(Long id) { this.id = id; } // <-- add this
+
 
     @Column(nullable = false, unique = true)
     private String typeName; // Sick, Casual, Paid
