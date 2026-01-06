@@ -69,12 +69,14 @@ public class LeaveRequestService {
         }
         leaveRequest.setTotalDays(totalDays);
         leaveRequest.setLeaveDays(leaveDays);
-        leaveRequest.setManagerComment("approved by manager");
+        leaveRequest.setManagerComment("leave approval pending from manager");
 
         LeaveRequest savedLeaveRequest = leaveRequestRepository.save(leaveRequest);
         LeaveApplyResponseDto leaveApplyResponseDto = new LeaveApplyResponseDto();
         leaveApplyResponseDto.setLeaveId(leaveRequest.getId());
         leaveApplyResponseDto.setStatus(leaveRequest.getStatus().toString());
+        leaveApplyResponseDto.setTotalDays(totalDays);
+        leaveApplyResponseDto.setMessage("Leave Applied Successfully, waiting for RM Action");
         // pending setters
         return leaveApplyResponseDto;
     }
